@@ -1,5 +1,5 @@
-# QRSSplus Downloader
-QRSSplus Downloader is a Windows application which makes it easy to automatically download QRSS grabber images from the [QRSS Plus website](http://swharden.com/qrss/plus/).
+# QRSS Plus Downloader
+The **QRSS Plus Downloader** is a Windows application which makes it easy to automatically download QRSS grabber images from the [QRSS Plus website](http://swharden.com/qrss/plus/).
 
 ![](/doc/screenshot.jpg)
 
