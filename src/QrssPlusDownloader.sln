@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QrssPlusDownloader", "QrssPlusDownloader\QrssPlusDownloader.csproj", "{C1773164-89B4-4C32-9289-D3FA6A99F0EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1773164-89B4-4C32-9289-D3FA6A99F0EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1773164-89B4-4C32-9289-D3FA6A99F0EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1773164-89B4-4C32-9289-D3FA6A99F0EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1773164-89B4-4C32-9289-D3FA6A99F0EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A4E40028-C485-44E9-B139-A2B3D9C5CA5B}
+	EndGlobalSection
+EndGlobal
