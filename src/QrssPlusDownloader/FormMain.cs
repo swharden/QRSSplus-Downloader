@@ -155,8 +155,15 @@ namespace QrssPlusDownloader
 
         private void DownloadNow()
         {
-            ListFilesNeeded();
-            DownloadFilesListed();
+            try
+            {
+                ListFilesNeeded();
+                DownloadFilesListed();
+            }
+            catch
+            {
+                lblStatus.Text = "ERROR: an exception was thrown in DownloadNow()";
+            }
         }
 
         private void ListFilesNeeded()
