@@ -50,9 +50,9 @@
             this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVersion.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(12, 44);
+            this.lblVersion.Location = new System.Drawing.Point(17, 44);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(268, 35);
+            this.lblVersion.Size = new System.Drawing.Size(263, 35);
             this.lblVersion.TabIndex = 2;
             this.lblVersion.Text = "version 1.0";
             // 
@@ -61,11 +61,12 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 89);
+            this.label2.Location = new System.Drawing.Point(20, 89);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(268, 23);
+            this.label2.Size = new System.Drawing.Size(260, 23);
             this.label2.TabIndex = 3;
             this.label2.Text = "by Scott Harden, AJ4VD";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button1
             // 

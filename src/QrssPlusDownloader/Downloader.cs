@@ -67,7 +67,14 @@ namespace QrssPlusDownloader
             string url = urlBase + filename;
             using (WebClient client = new WebClient())
             {
-                client.DownloadFile(url, savePath);
+                try
+                {
+                    client.DownloadFile(url, savePath);
+                }
+                catch
+                {
+                    Console.WriteLine("exception thrown in Download()");
+                }
             }
         }
     }
