@@ -20,7 +20,7 @@ namespace QrssPlusDownloader
         private void About_Load(object sender, EventArgs e)
         {
             Version ver = typeof(FormMain).Assembly.GetName().Version;
-            lblVersion.Text = ver.ToString();
+            lblVersion.Text = "Version " + ver.ToString().Replace(".0.0", "");
         }
 
         private void Button1_Click(object sender, EventArgs e)
