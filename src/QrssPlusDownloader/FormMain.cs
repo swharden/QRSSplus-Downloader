@@ -164,9 +164,9 @@ namespace QrssPlusDownloader
 
         private void DownloadNow()
         {
-            bool USE_EXCEPTIONS = true;
+            bool IGNORE_EXCEPTIONS = true;
 
-            if (USE_EXCEPTIONS)
+            if (IGNORE_EXCEPTIONS)
             {
                 try
                 {
