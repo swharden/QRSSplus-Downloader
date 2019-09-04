@@ -57,11 +57,32 @@ namespace QrssPlusDownloader
 
         public static bool AlreadyDownloaded(string filename)
         {
-            return System.IO.File.Exists(PathForGrabber(filename));
+            string savePath = PathForGrabber(filename);
+            string saveFolder = System.IO.Path.GetDirectoryName(savePath);
+
+            // if the folder doesn't exist we know it's not already downloaded
+            if (!System.IO.Directory.Exists(saveFolder))
+                return false;
+
+            // check if the exact file exists
+            if (System.IO.File.Exists(savePath))
+                return true;
+
+            // check if a file with the same hash exists
+            string thisHash = filename.Split('.')[2];
+            string[] fileNamesOnDisk = System.IO.Directory.GetFiles(saveFolder);
+            foreach (string fileNameOnDisk in fileNamesOnDisk)
+                if (fileNameOnDisk.Contains(thisHash))
+                    return true;
+
+            return false;
         }
 
         public static void Download(string filename, string urlBase = "http://swharden.com/qrss/plus/data/")
         {
+            if (Downloader.AlreadyDownloaded(filename))
+                return;
+
             string savePath = PathForGrabber(filename);
             System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(savePath));
             string url = urlBase + filename;
