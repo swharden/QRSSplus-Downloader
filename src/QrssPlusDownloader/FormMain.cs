@@ -28,6 +28,10 @@ namespace QrssPlusDownloader
             {
                 // program just opened
                 UpdateGrabberList();
+
+                string pathDefaultGrabberList = System.IO.Path.GetFullPath("./grabberIDs.txt");
+                if (System.IO.File.Exists(pathDefaultGrabberList))
+                    LoadGrabberFile(pathDefaultGrabberList);
             }
 
             string timeStringNow = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -95,7 +99,7 @@ namespace QrssPlusDownloader
         {
             SaveFileDialog diag = new SaveFileDialog();
             diag.InitialDirectory = System.IO.Path.GetFullPath("./");
-            diag.FileName = "graberIDs.txt";
+            diag.FileName = "grabberIDs.txt";
             diag.Filter = "TXT Files (*.txt)|*.txt|All files (*.*)|*.*";
             if (diag.ShowDialog() == DialogResult.OK)
             {
@@ -114,16 +118,21 @@ namespace QrssPlusDownloader
             diag.Filter = "TXT Files (*.txt)|*.txt|All files (*.*)|*.*";
             if (diag.ShowDialog() == DialogResult.OK)
             {
-                string[] lines = System.IO.File.ReadAllLines(diag.FileName);
-                lblStatus.Text = $"Loaded {diag.FileName}";
+                LoadGrabberFile(diag.FileName);
+            }
+        }
 
-                for (int i = 0; i < lbGrabbers.Items.Count; i++)
-                {
-                    if (lines.Contains(lbGrabbers.Items[i].ToString()))
-                        lbGrabbers.SetItemChecked(i, true);
-                    else
-                        lbGrabbers.SetItemChecked(i, false);
-                }
+        private void LoadGrabberFile(string diagFileName)
+        {
+            string[] lines = System.IO.File.ReadAllLines(diagFileName);
+            lblStatus.Text = $"Loaded {diagFileName}";
+
+            for (int i = 0; i < lbGrabbers.Items.Count; i++)
+            {
+                if (lines.Contains(lbGrabbers.Items[i].ToString()))
+                    lbGrabbers.SetItemChecked(i, true);
+                else
+                    lbGrabbers.SetItemChecked(i, false);
             }
         }
 
