@@ -72,8 +72,13 @@ namespace QrssPlusDownloader
             string thisHash = filename.Split('.')[2];
             string[] fileNamesOnDisk = System.IO.Directory.GetFiles(saveFolder);
             foreach (string fileNameOnDisk in fileNamesOnDisk)
+            {
                 if (fileNameOnDisk.Contains(thisHash))
+                {
+                    Console.WriteLine($"not downloading {filename} (same hash as {System.IO.Path.GetFileName(fileNameOnDisk)})");
                     return true;
+                }
+            }
 
             return false;
         }
