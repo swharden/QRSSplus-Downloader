@@ -1,7 +1,11 @@
-# QRSS Plus Downloader
+---
+title: QRSS Plus Downloader
+description: Windows application for automatically downloading QRSS grabber images from the QRSS Plus website
+---
+
 The **QRSS Plus Downloader** is a Windows application which makes it easy to automatically download QRSS grabber images from the [QRSS Plus website](http://swharden.com/qrss/plus/).
 
-![](/website/screenshot.jpg)
+![](screenshot.jpg)
 
 ### Features
 * automatic grabber detection (grabbers are pulled from QRSS Plus website)
@@ -10,4 +14,4 @@ The **QRSS Plus Downloader** is a Windows application which makes it easy to aut
 * select only the callsigns you wish to download
 
 ### Download for Windows
-* [QrssPlusDownloader-1.3.zip](https://github.com/swharden/QRSSplus-Downloader/releases/download/1.3/QrssPlusDownloader-1.3.zip)
+* [QrssPlusDownloader-1.3.zip](downloads/QrssPlusDownloader-1.3.zip)
