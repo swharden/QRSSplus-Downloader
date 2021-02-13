@@ -9,8 +9,10 @@ namespace QrssPlusDownloader
 {
     public static class Downloader
     {
-        public static string[] DownloadGrabURLs(string urlGrabberIndex = "http://swharden.com/qrss/plus/data/")
+        public static string[] DownloadGrabURLs()
         {
+            // TODO: create a REST API for this
+            const string urlGrabberIndex = "https://swharden.com/qrss/plus/data/";
             WebClient client = new WebClient();
             List<string> urls = new List<string>();
             string[] imageExtensions = { "jpg", "png", "gif" };
