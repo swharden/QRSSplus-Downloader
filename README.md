@@ -8,6 +8,3 @@ The **QRSS Plus Downloader** is a Windows application which makes it easy to aut
 * downloaded files are organized info folders according to callsign
 * automatically download new grabs every every 10 minutes
 * select only the callsigns you wish to download
-
-### Download
-Click-to-run Windows application: [QrssPlusDownloader-v1.2.zip](https://raw.githubusercontent.com/swharden/QRSSplus-Downloader/master/download/QrssPlusDownloader-v1.2.zip)
