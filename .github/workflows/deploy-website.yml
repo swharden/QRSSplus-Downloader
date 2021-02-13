@@ -1,0 +1,22 @@
+name: "Deploy Website"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Website
+        id: myRequest
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: "https://swharden.com/software/qrss-downloader/deploy"
+          method: "POST"
+          username: "deploy"
+          password: ${{ secrets.DEPLOY_PASSWORD }}
+      - name: Show Response
+        run: echo ${{ steps.myRequest.outputs.response }}
