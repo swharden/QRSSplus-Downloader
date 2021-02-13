@@ -5,7 +5,11 @@ description: Windows application for automatically downloading QRSS grabber imag
 
 The **QRSS Plus Downloader** is a Windows application which makes it easy to automatically download QRSS grabber images from the [QRSS Plus website](http://swharden.com/qrss/plus/).
 
+<div class="text-center">
+
 ![](screenshot.jpg)
+
+</div>
 
 ## Features
 * Automatic grabber detection (grabbers are pulled from QRSS Plus website)
