@@ -11,14 +11,6 @@ The **QRSS Plus Downloader** is a Windows application which makes it easy to aut
 
 </div>
 
-## Features
-* Automatic grabber detection (grabbers are pulled from QRSS Plus website)
-* Downloaded files are organized info folders according to callsign
-* Automatically download new grabs every every 10 minutes
-* Select only the callsigns you wish to download
-
-## Download
-
 <div class="m-4 text-center">
   <div class="display-6">Download</div>
 	<a class="btn btn-primary btn-lg" href="downloads/QrssPlusDownloader-1.3.zip">
@@ -30,7 +22,13 @@ The **QRSS Plus Downloader** is a Windows application which makes it easy to aut
   </div>
 </div>
 
-## Source Code
+### Features
+* Automatic grabber detection (grabbers are pulled from QRSS Plus website)
+* Downloaded files are organized info folders according to callsign
+* Automatically download new grabs every every 10 minutes
+* Select only the callsigns you wish to download
+
+### Source Code
 
 * GitHub: [swharden/QRSSplus-Downloader](https://github.com/swharden/QRSSplus-Downloader)
 
