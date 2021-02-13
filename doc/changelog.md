@@ -1,5 +1,9 @@
 # Changelog & Version History
 
+## Version 1.3 (2021-02-13)
+* Target .NET Framework 4.6.1 (previously 4.5)
+* Add SSL support
+
 ## Version 1.2 (2019-09-04)
 * Don't download images whose hash is already seen. This prevents the downloading duplicate images from inactive grabbers.
 * Default save file is now "grabber.txt" (not "graber.txt").
