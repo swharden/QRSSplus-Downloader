@@ -23,7 +23,7 @@ namespace QrssPlusDownloader
             {
                 foreach (JsonProperty grabber in document.RootElement.GetProperty("grabbers").EnumerateObject())
                 {
-                    foreach(var url in grabber.Value.GetProperty("urls").EnumerateArray())
+                    foreach (var url in grabber.Value.GetProperty("urls").EnumerateArray())
                     {
                         urls.Add(url.GetString());
                     }
@@ -33,24 +33,14 @@ namespace QrssPlusDownloader
             return urls.ToArray();
         }
 
-        /// <summary>
-        /// Given an array of historical grab URLs, return an array of callsigns observed in the array
-        /// </summary>
-        public static string[] GetCallSigns(string[] urls)
-        {
-            HashSet<string> calls = new HashSet<string>();
-            foreach (string url in urls)
-            {
-                string call = System.IO.Path.GetFileName(url).Split(' ')[0];
-                if (!calls.Contains(call))
-                    calls.Add(call);
-            }
-            return calls.ToArray();
-        }
+        public static string[] CallsignFromUrls(string[] urls) => urls.Select(x => CallsignFromUrl(x)).Distinct().ToArray();
 
-        public static string PathForGrabber(string filename)
+        public static string CallsignFromUrl(string url) => System.IO.Path.GetFileName(url).Split(' ')[0];
+
+        public static string PathForGrabber(string url)
         {
-            string call = filename.Split('.')[0];
+            string filename = System.IO.Path.GetFileName(url);
+            string call = CallsignFromUrl(url); ;
             string savePath = System.IO.Path.GetFullPath("./");
             savePath = System.IO.Path.Combine(savePath, "downloads");
             savePath = System.IO.Path.Combine(savePath, call);
@@ -58,8 +48,9 @@ namespace QrssPlusDownloader
             return savePath;
         }
 
-        public static bool AlreadyDownloaded(string filename)
+        public static bool AlreadyDownloaded(string url)
         {
+            string filename = System.IO.Path.GetFileName(url);
             string savePath = PathForGrabber(filename);
             string saveFolder = System.IO.Path.GetDirectoryName(savePath);
 
@@ -72,14 +63,13 @@ namespace QrssPlusDownloader
             return false;
         }
 
-        public static void Download(string filename, string urlBase = "http://swharden.com/qrss/plus/data/")
+        public static void Download(string url)
         {
-            if (Downloader.AlreadyDownloaded(filename))
+            if (AlreadyDownloaded(url))
                 return;
 
-            string savePath = PathForGrabber(filename);
+            string savePath = PathForGrabber(url);
             System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(savePath));
-            string url = urlBase + filename;
             using (WebClient client = new WebClient())
             {
                 try

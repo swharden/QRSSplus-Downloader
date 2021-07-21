@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -89,7 +90,7 @@ namespace QrssPlusDownloader
             lblStatus.Text = "Downloading index of latest grabs...";
             Application.DoEvents();
             string[] urls = Downloader.DownloadGrabURLs();
-            string[] calls = Downloader.GetCallSigns(urls);
+            string[] calls = Downloader.CallsignFromUrls(urls);
             lbGrabbers.Items.Clear();
             lbGrabbers.Items.AddRange(calls);
             lblStatus.Text = $"Found {calls.Length} grabbers";
@@ -164,24 +165,15 @@ namespace QrssPlusDownloader
 
         private void DownloadNow()
         {
-            bool IGNORE_EXCEPTIONS = true;
-
-            if (IGNORE_EXCEPTIONS)
-            {
-                try
-                {
-                    ListFilesNeeded();
-                    DownloadFilesListed();
-                }
-                catch
-                {
-                    lblStatus.Text = "ERROR: an exception was thrown in DownloadNow()";
-                }
-            }
-            else
+            try
             {
                 ListFilesNeeded();
                 DownloadFilesListed();
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Text = "ERROR: an exception was thrown in DownloadNow()";
+                Debug.WriteLine(ex);
             }
         }
 
@@ -196,10 +188,17 @@ namespace QrssPlusDownloader
             foreach (Object item in lbGrabbers.CheckedItems)
                 callsToDownload.Add(item.ToString());
 
-            foreach (string fileName in Downloader.DownloadGrabURLs())
-                if (callsToDownload.Contains(fileName.Split('.')[0]))
-                    if (!Downloader.AlreadyDownloaded(fileName))
-                        lbFiles.Items.Add(fileName);
+            string[] grabUrls = Downloader.DownloadGrabURLs();
+            foreach (string grabUrl in grabUrls)
+            {
+                if (!callsToDownload.Contains(Downloader.CallsignFromUrl(grabUrl)))
+                    continue;
+
+                if (Downloader.AlreadyDownloaded(grabUrl))
+                    continue;
+
+                lbFiles.Items.Add(grabUrl);
+            }
 
             if (callsToDownload.Count == 0)
                 lblStatus.Text = "ERROR: no grabbers are checked.";
