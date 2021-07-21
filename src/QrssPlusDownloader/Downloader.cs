@@ -3,44 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace QrssPlusDownloader
 {
     public static class Downloader
     {
+        private const string URL_GRABBERS_JSON = "https://qrssplus.z20.web.core.windows.net/grabbers.json";
+
+        /// <summary>
+        /// Return an array of image URLs for all historical grabs for all grabbers
+        /// </summary>
         public static string[] DownloadGrabURLs()
         {
-            // TODO: create a REST API for this
-            const string urlGrabberIndex = "https://swharden.com/qrss/plus/data/";
-            WebClient client = new WebClient();
             List<string> urls = new List<string>();
-            string[] imageExtensions = { "jpg", "png", "gif" };
-            string index = client.DownloadString(urlGrabberIndex);
-            foreach (string possibleUrl in index.Split(new string[] { "href=" }, StringSplitOptions.None))
+            using (WebClient client = new WebClient())
+            using (JsonDocument document = JsonDocument.Parse(client.DownloadString(URL_GRABBERS_JSON)))
             {
-                if (!possibleUrl.StartsWith("\""))
-                    continue;
-                string url = possibleUrl.Split('\"')[1];
-                string ext = System.IO.Path.GetExtension(url).Trim('.').ToLower();
-                if (ext == "")
-                    continue;
-                if (imageExtensions.Contains(ext))
-                    urls.Add(url);
-            }
-            client.Dispose();
+                foreach (JsonProperty grabber in document.RootElement.GetProperty("grabbers").EnumerateObject())
+                {
+                    foreach(var url in grabber.Value.GetProperty("urls").EnumerateArray())
+                    {
+                        urls.Add(url.GetString());
+                    }
+                }
+            };
+
             return urls.ToArray();
         }
 
+        /// <summary>
+        /// Given an array of historical grab URLs, return an array of callsigns observed in the array
+        /// </summary>
         public static string[] GetCallSigns(string[] urls)
         {
-            List<string> calls = new List<string>();
+            HashSet<string> calls = new HashSet<string>();
             foreach (string url in urls)
             {
-                string[] parts = url.Split('.');
-                string call = parts[0];
-                string timestamp = parts[1];
-                string hash = parts[2];
+                string call = System.IO.Path.GetFileName(url).Split(' ')[0];
                 if (!calls.Contains(call))
                     calls.Add(call);
             }
@@ -62,25 +63,11 @@ namespace QrssPlusDownloader
             string savePath = PathForGrabber(filename);
             string saveFolder = System.IO.Path.GetDirectoryName(savePath);
 
-            // if the folder doesn't exist we know it's not already downloaded
             if (!System.IO.Directory.Exists(saveFolder))
                 return false;
 
-            // check if the exact file exists
             if (System.IO.File.Exists(savePath))
                 return true;
-
-            // check if a file with the same hash exists
-            string thisHash = filename.Split('.')[2];
-            string[] fileNamesOnDisk = System.IO.Directory.GetFiles(saveFolder);
-            foreach (string fileNameOnDisk in fileNamesOnDisk)
-            {
-                if (fileNameOnDisk.Contains(thisHash))
-                {
-                    Console.WriteLine($"not downloading {filename} (same hash as {System.IO.Path.GetFileName(fileNameOnDisk)})");
-                    return true;
-                }
-            }
 
             return false;
         }
