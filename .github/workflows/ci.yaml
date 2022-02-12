@@ -9,8 +9,8 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  test:
-    name: Build
+  build-and-test:
+    name: Build and Test
     runs-on: windows-latest
     steps:
       - name: 🛒 Checkout
