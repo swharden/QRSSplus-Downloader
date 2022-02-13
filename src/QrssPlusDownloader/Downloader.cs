@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -11,6 +13,34 @@ namespace QrssPlusDownloader
     public static class Downloader
     {
         private const string URL_GRABBERS_JSON = "https://qrssplus.z20.web.core.windows.net/grabbers.json";
+
+        public static GrabUrl[] GetGrabUrls()
+        {
+            List<GrabUrl> grabUrls = new();
+
+            using JsonDocument document = RequestJson(URL_GRABBERS_JSON);
+
+            foreach (JsonProperty grabber in document.RootElement.GetProperty("grabbers").EnumerateObject())
+            {
+                foreach (JsonElement url in grabber.Value.GetProperty("urls").EnumerateArray())
+                {
+                    grabUrls.Add(new(url.ToString()));
+                }
+            }
+
+            return grabUrls.ToArray();
+        }
+
+        private static JsonDocument RequestJson(string url) => RequestJsonAsync(url).Result;
+
+        private static async Task<JsonDocument> RequestJsonAsync(string url)
+        {
+            using HttpClient client = new();
+            using HttpResponseMessage response = await client.GetAsync(url);
+            using HttpContent content = response.Content;
+            string json = await content.ReadAsStringAsync();
+            return JsonDocument.Parse(json);
+        }
 
         /// <summary>
         /// Return an array of image URLs for all historical grabs for all grabbers

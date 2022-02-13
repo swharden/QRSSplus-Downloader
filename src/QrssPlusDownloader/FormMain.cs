@@ -224,5 +224,10 @@ namespace QrssPlusDownloader
             progress.Value = 0;
             lblStatus.Text = $"completed download of {filesToDownload} images";
         }
+
+        private void downloadAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormDownloadAll().ShowDialog();
+        }
     }
 }

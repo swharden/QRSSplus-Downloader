@@ -49,6 +49,8 @@
             this.downloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.automaticToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.openDownloadsFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -56,8 +58,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbFiles = new System.Windows.Forms.ListBox();
-            this.openDownloadsFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.downloadAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -200,6 +202,8 @@
             this.nowToolStripMenuItem,
             this.automaticToolStripMenuItem,
             this.toolStripSeparator4,
+            this.downloadAllToolStripMenuItem,
+            this.toolStripSeparator5,
             this.openDownloadsFolderToolStripMenuItem});
             this.downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
             this.downloadToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
@@ -219,6 +223,18 @@
             this.automaticToolStripMenuItem.Text = "Automatic (10min)";
             this.automaticToolStripMenuItem.Click += new System.EventHandler(this.AutomaticToolStripMenuItem_Click);
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(198, 6);
+            // 
+            // openDownloadsFolderToolStripMenuItem
+            // 
+            this.openDownloadsFolderToolStripMenuItem.Name = "openDownloadsFolderToolStripMenuItem";
+            this.openDownloadsFolderToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.openDownloadsFolderToolStripMenuItem.Text = "Open Downloads Folder";
+            this.openDownloadsFolderToolStripMenuItem.Click += new System.EventHandler(this.OpenDownloadsFolderToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -230,7 +246,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
@@ -283,19 +299,19 @@
             this.lbFiles.Size = new System.Drawing.Size(342, 399);
             this.lbFiles.TabIndex = 0;
             // 
-            // openDownloadsFolderToolStripMenuItem
+            // downloadAllToolStripMenuItem
             // 
-            this.openDownloadsFolderToolStripMenuItem.Name = "openDownloadsFolderToolStripMenuItem";
-            this.openDownloadsFolderToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.openDownloadsFolderToolStripMenuItem.Text = "Open Downloads Folder";
-            this.openDownloadsFolderToolStripMenuItem.Click += new System.EventHandler(this.OpenDownloadsFolderToolStripMenuItem_Click);
+            this.downloadAllToolStripMenuItem.Name = "downloadAllToolStripMenuItem";
+            this.downloadAllToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.downloadAllToolStripMenuItem.Text = "Download all";
+            this.downloadAllToolStripMenuItem.Click += new System.EventHandler(this.downloadAllToolStripMenuItem_Click);
             // 
-            // toolStripSeparator4
+            // toolStripSeparator5
             // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(198, 6);
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(198, 6);
             // 
-            // Form1
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -305,7 +321,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "FormMain";
             this.Text = "QRSS Plus Downloader";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
@@ -349,6 +365,8 @@
         private System.Windows.Forms.ListBox lbFiles;
         private System.Windows.Forms.ToolStripMenuItem openDownloadsFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem downloadAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }
 
