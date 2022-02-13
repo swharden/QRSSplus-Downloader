@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
+
+[assembly: AssemblyVersion("1.5.0.0")]
 
 namespace QrssPlusDownloader
 {
